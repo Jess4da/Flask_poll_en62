@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="form">
+                    
+        <form name="form1" id="form1" action="/check_against" class="text-form" method="POST">
+            <h2>{{ title }}</h2>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        {% if message == 'เช็คชื่อสำเร็จ' %}
+                            <h4 style="color:green">{{ message }}</h4>
+                        {% elif message == 'ไม่พบข้อมูล' %}
+                            <h4 style="color:red">{{ message }}</h4>
+                        {% else %}
+                            <h4 style="color:coral">{{ message }}</h4>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <input id="User" name="User" type="tel" placeholder="รหัสนิสิต 4 ตัวท้าย"/>
+            <input id="Comment" name="Comment" type="text" placeholder="หมายเหตุ"/>
+            
+            <button id="Go" name="Go" type="submit">เช็คชื่อ</button><br>
+            
+        </form>
+        <form name="form2" id="form2" class="text-form" action="https://docs.google.com/spreadsheets/d/146bOkZg6pWA3p4zRb5CKyH6HU1ZfogNc9nWVfTjzsUY/edit?toSheet#gid=322919427" target="_blank">
+            <button id="toSheet" name="toSheet" type="submit">ดูข้อมูล</button>
+            <button id="back" name="back" type="button" onclick="location.href='/'">กลับ</button>
+        </form>        
+    </div>
+{% endblock content %}
